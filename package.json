@@ -1,5 +1,5 @@
 {
-  "name": "uniswap-v3-deploy-plugin",
+  "name": "@daoleno/uniswap-v3-deploy-plugin",
   "version": "0.1.0",
   "description": "Hardhat plugin for Uniswap V3 deployment",
   "repository": "github:omarish/uniswap-v3-deploy-plugin",
@@ -7,6 +7,9 @@
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
   "keywords": [
     "ethereum",
     "smart-contracts",
