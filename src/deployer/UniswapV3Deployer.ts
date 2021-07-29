@@ -135,8 +135,8 @@ export class UniswapV3Deployer {
 
   async deployQuoter(factoryAddress: string, weth9Address: string) {
     return await this.deployContract<Contract>(
-      artifacts.Quotor.abi,
-      artifacts.Quotor.bytecode,
+      artifacts.Quoter.abi,
+      artifacts.Quoter.bytecode,
       [factoryAddress, weth9Address],
       this.deployer
     );

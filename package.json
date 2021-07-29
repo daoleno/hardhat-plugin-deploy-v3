@@ -1,6 +1,6 @@
 {
   "name": "@daoleno/uniswap-v3-deploy-plugin",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Hardhat plugin for Uniswap V3 deployment",
   "repository": "github:omarish/uniswap-v3-deploy-plugin",
   "author": "Omar Bohsali",
