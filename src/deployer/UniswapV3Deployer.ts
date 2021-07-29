@@ -9,6 +9,7 @@ const artifacts: { [name: string]: ContractJson } = {
   NFTDescriptor: require("@uniswap/v3-periphery/artifacts/contracts/libraries/NFTDescriptor.sol/NFTDescriptor.json"),
   NonfungibleTokenPositionDescriptor: require("@uniswap/v3-periphery/artifacts/contracts/NonfungibleTokenPositionDescriptor.sol/NonfungibleTokenPositionDescriptor.json"),
   NonfungiblePositionManager: require("@uniswap/v3-periphery/artifacts/contracts/NonfungiblePositionManager.sol/NonfungiblePositionManager.json"),
+  Quoter: require("@uniswap/v3-periphery/artifacts/contracts/lens/Quoter.sol/Quoter.json"),
   WETH9,
 };
 
@@ -22,6 +23,7 @@ export class UniswapV3Deployer {
 
     const weth9 = await deployer.deployWETH9();
     const factory = await deployer.deployFactory();
+    const quoter = await deployer.deployQuoter(factory.address, weth9.address);
     const router = await deployer.deployRouter(factory.address, weth9.address);
     const nftDescriptorLibrary = await deployer.deployNFTDescriptorLibrary();
     const positionDescriptor = await deployer.deployPositionDescriptor(
@@ -37,6 +39,7 @@ export class UniswapV3Deployer {
     return {
       weth9,
       factory,
+      quoter,
       router,
       nftDescriptorLibrary,
       positionDescriptor,
@@ -126,6 +129,15 @@ export class UniswapV3Deployer {
       artifacts.NonfungiblePositionManager.abi,
       artifacts.NonfungiblePositionManager.bytecode,
       [factoryAddress, weth9Address, positionDescriptorAddress],
+      this.deployer
+    );
+  }
+
+  async deployQuoter(factoryAddress: string, weth9Address: string) {
+    return await this.deployContract<Contract>(
+      artifacts.Quotor.abi,
+      artifacts.Quotor.bytecode,
+      [factoryAddress, weth9Address],
       this.deployer
     );
   }
